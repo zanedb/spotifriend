@@ -10,6 +10,7 @@ import SDWebImageSwiftUI
 
 struct ContentView: View {
     @StateObject var viewModel = FriendActivityBackend.shared
+    @State private var showingSettings = false
     
     var body: some View {
         NavigationView {
@@ -18,14 +19,11 @@ struct ContentView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigation) {
-                        Menu {
-                            Button(action: { viewModel.logout() }) {
-                                Label("Log out", systemImage: "rectangle.portrait.and.arrow.forward")
-                            }
-                        } label: {
+                        
+                        Button(action: { showingSettings.toggle() }) {
                             Label("Settings", systemImage: "gearshape")
                         }
-                        .buttonStyle(.plain)
+                            .buttonStyle(.plain)
                     }
                     if (viewModel.isLoading) {
                         ToolbarItem {
@@ -39,6 +37,9 @@ struct ContentView: View {
                 Alert(title: Text("Debug Log"), message: Text(viewModel.debugError ?? "no error. suspicious"), dismissButton: .cancel())
             }
             #endif
+            .sheet(isPresented: $showingSettings) {
+                SettingsView()
+            }
             .environmentObject(viewModel)
     }
 }
