@@ -9,6 +9,8 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct ContentView: View {
+    @Environment(\.colorScheme) var colorScheme
+    @AppStorage("alwaysDark") var alwaysDark = false
     @StateObject var viewModel = FriendActivityBackend.shared
     @State private var showingSettings = false
     
@@ -40,6 +42,7 @@ struct ContentView: View {
             .sheet(isPresented: $showingSettings) {
                 SettingsView()
             }
+            .preferredColorScheme(alwaysDark ? .dark : colorScheme)
             .environmentObject(viewModel)
     }
 }

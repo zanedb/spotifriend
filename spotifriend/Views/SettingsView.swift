@@ -10,6 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var viewModel: FriendActivityBackend
+    @AppStorage("alwaysDark") var alwaysDark = false
     
     var body: some View {
         NavigationStack {
@@ -25,6 +26,14 @@ struct SettingsView: View {
                     }
                 } header: {
                     Text("Account")
+                }
+                
+                Section {
+                    Toggle(isOn: $alwaysDark, label: {
+                        Text("Always Dark")
+                    })
+                } header: {
+                    Text("Appearance")
                 }
                 
                 Section {
