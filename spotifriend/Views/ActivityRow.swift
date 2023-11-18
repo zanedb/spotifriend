@@ -77,8 +77,12 @@ struct ActivityRow: View {
     }
 }
 
-struct ActivityRow_Previews: PreviewProvider {
-    static var previews: some View {
+#Preview {
+    List {
         ActivityRow(imageURL: URL(string: "https://www.hackingwithswift.com/samples/paul.jpg")!, friend: "Paul", track: "Glimpse of Us", artist: "Joji", context: "SMITHEREENS", isAlbum: true, isListeningNow: true, timestamp: "now")
+        ActivityRow(imageURL: URL(string: "https://github.com/zanedb.png")!, friend: "Zane", track: "Lazy Bird", artist: "Tom Browne", context: "Funkin' For Jamaica", isAlbum: true, isListeningNow: true, timestamp: "now")
+        ActivityRow(imageURL: URL(string: "https://github.com/lachlanjc.png")!, friend: "Lachlan", track: "Rush", artist: "Troye Sivan", context: "Something To Give Each Other", isAlbum: true, isListeningNow: true, timestamp: "now")
+        ActivityRow(imageURL: URL(string: "https://github.com/matthewstanciu.png")!, friend: "Matthew", track: "Eye in the Wall", artist: "Perfume Genius", context: "Ugly Season", isAlbum: true, isListeningNow: true, timestamp: "now")
     }
+    .listStyle(.inset)
 }
