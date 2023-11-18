@@ -31,6 +31,7 @@ struct ActivityRow: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 56, height: 56)
                 .clipShape(Circle())
+                .padding(.trailing, 5)
             
             VStack(alignment: .leading, spacing: 0) {
                 Text(friend)
