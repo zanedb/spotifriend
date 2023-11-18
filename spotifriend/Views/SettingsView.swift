@@ -11,6 +11,7 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var viewModel: FriendActivityBackend
     @AppStorage("alwaysDark") var alwaysDark = false
+    @AppStorage("monospaced") var monospaced = false
     
     var body: some View {
         NavigationStack {
@@ -32,6 +33,9 @@ struct SettingsView: View {
                     Toggle(isOn: $alwaysDark, label: {
                         Text("Always Dark")
                     })
+                    Toggle(isOn: $monospaced, label: {
+                        Text("Monospaced")
+                    })
                 } header: {
                     Text("Appearance")
                 }
@@ -42,6 +46,12 @@ struct SettingsView: View {
                         Spacer()
                         Text("2023.11 (\(SSApp.version))")
                             .foregroundColor(.gray)
+                    }
+                    
+                    NavigationLink {
+                        ErrorView(icon: monospaced ? "eye.fill" : "questionmark", title: "", subtitle: "")
+                    } label: {
+                        Text("Libraries")
                     }
                 } header: {
                     Text("About")

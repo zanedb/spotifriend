@@ -9,6 +9,8 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct ActivityRow: View {
+    @AppStorage("monospaced") var monospaced = false
+    
     var imageURL: URL
     var friend: String
     var track: String
@@ -38,11 +40,13 @@ struct ActivityRow: View {
                     .font(.headline)
                     .padding(.bottom, 5)
                     .lineLimit(1)
+                    .monospaced(monospaced)
                 
                 HStack(spacing: 0) {
                     Text(track)
                         .lineLimit(1)
                         .font(.subheadline)
+                        .monospaced(monospaced)
                     Image(systemName: "circle.fill")
                         .font(.system(size: 3))
                         .padding(.horizontal, 5)
@@ -50,6 +54,7 @@ struct ActivityRow: View {
                         .font(.subheadline)
                         .font(.system(size: 16))
                         .lineLimit(1)
+                        .monospaced(monospaced)
                 }
                     .padding(.bottom, 5)
                 
@@ -60,6 +65,7 @@ struct ActivityRow: View {
                         .font(.subheadline)
                         .padding(.leading, -2)
                         .lineLimit(1)
+                        .monospaced(monospaced)
                 }
             }
             
