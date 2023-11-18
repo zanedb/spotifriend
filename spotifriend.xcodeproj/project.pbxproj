@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F4160552B0835B9006545B6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4160542B0835B9006545B6 /* SettingsView.swift */; };
 		2FDFD6A82A897A2400B734A5 /* spotifriendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6A72A897A2400B734A5 /* spotifriendApp.swift */; };
 		2FDFD6AC2A897A2600B734A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FDFD6AB2A897A2600B734A5 /* Assets.xcassets */; };
 		2FDFD6AF2A897A2600B734A5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FDFD6AE2A897A2600B734A5 /* Preview Assets.xcassets */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F4160542B0835B9006545B6 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2FDFD6A42A897A2400B734A5 /* spotifriend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spotifriend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FDFD6A72A897A2400B734A5 /* spotifriendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spotifriendApp.swift; sourceTree = "<group>"; };
 		2FDFD6AB2A897A2600B734A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -154,8 +156,9 @@
 			isa = PBXGroup;
 			children = (
 				2FDFD6D72A897AEC00B734A5 /* ContentView.swift */,
-				2FDFD6E82A898BFB00B734A5 /* ErrorView.swift */,
 				2FDFD6EA2A898EE500B734A5 /* LoginView.swift */,
+				2FDFD6E82A898BFB00B734A5 /* ErrorView.swift */,
+				2F4160542B0835B9006545B6 /* SettingsView.swift */,
 				2FDFD6E52A898B7F00B734A5 /* ActivityList.swift */,
 				2FDFD6DD2A89845500B734A5 /* ActivityRow.swift */,
 			);
@@ -230,7 +233,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					2FDFD6A32A897A2400B734A5 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -305,6 +308,7 @@
 				2FDFD6E42A89862B00B734A5 /* Utils.swift in Sources */,
 				2FDFD6D82A897AEC00B734A5 /* ContentView.swift in Sources */,
 				2FDFD6E92A898BFB00B734A5 /* ErrorView.swift in Sources */,
+				2F4160552B0835B9006545B6 /* SettingsView.swift in Sources */,
 				2FDFD6EB2A898EE500B734A5 /* LoginView.swift in Sources */,
 				2FDFD6A82A897A2400B734A5 /* spotifriendApp.swift in Sources */,
 				2FDFD6E02A8985AC00B734A5 /* FriendActivity.swift in Sources */,
@@ -349,6 +353,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -381,6 +386,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -409,6 +415,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -441,6 +448,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -465,12 +473,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"spotifriend/Preview Content\"";
 				DEVELOPMENT_TEAM = 69MX9ABFW5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Friend Activity";
+				INFOPLIST_FILE = spotifriend/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Spotifriend;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -480,7 +490,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = app.zane.spotifriend;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -495,12 +505,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"spotifriend/Preview Content\"";
 				DEVELOPMENT_TEAM = 69MX9ABFW5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Friend Activity";
+				INFOPLIST_FILE = spotifriend/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Spotifriend;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -510,7 +522,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = app.zane.spotifriend;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
