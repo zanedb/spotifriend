@@ -72,9 +72,6 @@ struct ActivityList: View {
                     ErrorView(icon: "wifi.slash", title: "Network Unavailable", subtitle: "Go to a Starbucks, perhaps?")
                 }
             }
-            .fullScreenCover(isPresented: $viewModel.loggedOut) {
-                LoginView()
-            }
         }
         .onReceive(timer) { _ in
             if (!viewModel.loggedOut) {
