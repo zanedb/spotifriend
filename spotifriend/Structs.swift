@@ -7,7 +7,25 @@
 
 import Foundation
 
-// access token json
+// MARK: - REST API
+
+struct User: Hashable, Codable {
+    let name: String?
+    let username: String?
+    let phone: String
+    let id: Int
+}
+
+struct UsernameLookupRequest: Codable {
+    let isAvailable: Bool
+    let username: String
+}
+
+struct AuthorizationResponse: Decodable {
+    let authorization: String
+}
+
+// MARK: Spotify Access Token JSON
 struct accessTokenJSON: Codable {
     let accessToken: String
     let isAnonymous: Bool

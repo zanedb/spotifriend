@@ -9,6 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var network: Network
     @Environment(\.colorScheme) var colorScheme
     @AppStorage("alwaysDark") var alwaysDark = false
     @StateObject var viewModel = FriendActivityBackend.shared
@@ -41,6 +42,12 @@ struct ContentView: View {
             #endif
             .sheet(isPresented: $showingSettings) {
                 SettingsView()
+            }
+            .fullScreenCover(isPresented: $network.loggedOut) {
+                OnboardingView()
+            }
+            .fullScreenCover(isPresented: $viewModel.loggedOut) {
+                LoginView()
             }
             .preferredColorScheme(alwaysDark ? .dark : colorScheme)
             .environmentObject(viewModel)
