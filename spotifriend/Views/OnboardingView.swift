@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct OnboardingView: View {
+    @EnvironmentObject var network: Network
+    
     @State private var pulseAmount: CGFloat = 1
     @State private var showForm = false
+    @FocusState private var focusedField: FocusedField?
     
     @State private var phoneNumber: String = ""
     @State private var smsCode: String = ""
@@ -26,29 +29,30 @@ struct OnboardingView: View {
     @State private var nameStatus: Status = .ready
     
     func next() {
-        // User has submitted phone number
+        let e164Number = "+1\(phoneNumber.formatFromMask(mask: "XXXXXXXXXX"))"
+        // User has submitted phone number, send them SMS
         if (phoneStatus == .ready && isValidPhone) {
-            // ...
+            network.authenticateWithPhone(number: e164Number)
             
             withAnimation {
-                phoneStatus = .done
+                phoneStatus = .loading
             }
         }
         
         // User has submitted SMS code
-        if (phoneStatus == .done && isValidSms) {
-            // ...
-            // IF account exists, login & bring user to next page
+        if (phoneStatus == .done && isValidSms && smsStatus != .done) {
+            // Sign in user
+            network.confirmSmsCode(number: e164Number, code: smsCode)
             
             withAnimation {
-                smsStatus = .done
+                smsStatus = .loading
             }
         }
         
         // Account does not exist, user has submitted username
-        if (smsStatus == .done && isValidUsername) {
-            // Validate on server side
-            // ..
+        if (smsStatus == .done && isValidUsername && usernameStatus != .done) {
+            // TODO: Validate on server side
+            // For now, just proceed to full name entry and submit there ..
             
             withAnimation {
                 usernameStatus = .done
@@ -60,10 +64,10 @@ struct OnboardingView: View {
             // Assuming name is valid ..
             
             // Update user object w/ info
-            // ..
+            network.setUserInfo(username: username, name: name)
             
             withAnimation {
-                nameStatus = .done
+                nameStatus = .loading
             }
         }
     }
@@ -107,86 +111,129 @@ struct OnboardingView: View {
                     .padding(.bottom, 18)
                 
                 if (showForm) {
-                    if (usernameStatus == .done) {
-                        HStack {
-                            Chevron(status: nameStatus)
-                            TextField("Enter your full name", text: $name)
-                                .font(.system(size: 18))
-                                .onChange(of: name) {
-                                   if !name.isEmpty {
-                                       // TODO: validate name ..?
-                                       // ..
+                    Form {
+                        if (usernameStatus == .done) {
+                            HStack {
+                                Chevron(status: nameStatus)
+                                TextField("Enter your full name", text: $name)
+                                    .font(.system(size: 18))
+                                    .focused($focusedField, equals: .name)
+                                    .onAppear {
+                                        focusedField = .name
                                     }
-                                 }
-                                .onSubmit { next() }
-                                .disabled(nameStatus == .done || nameStatus == .loading)
-                        }
+                                    .onChange(of: network.user) {
+                                        if (network.user!.username != nil && network.user!.name != nil) {
+                                            withAnimation {
+                                                nameStatus = .done
+                                            }
+                                            
+                                            // If successful, will set loggedOut to false & end flow
+                                            network.saveCredentials()
+                                        }
+                                    }
+                                    .onSubmit { next() }
+                                    .disabled(nameStatus == .done || nameStatus == .loading)
+                            }
                             .padding(.vertical, -5)
                             .foregroundColor(nameStatus == .done ? .gray : .primary)
-                    }
-                    
-                    if (smsStatus == .done) {
-                        HStack {
-                            Chevron(status: usernameStatus)
-                            TextField("Choose a username", text: $username)
-                                .font(.system(size: 18))
-                                .disableAutocorrection(true)
-                                .textInputAutocapitalization(.never)
-                                .onChange(of: username) {
-                                   if !username.isEmpty {
-                                       // Validate username contains only alphanumeric & _
-                                       isValidUsername = username.checkRegex(pattern: #"^[A-Za-z0-9_]{1,20}$"#)
-                                       usernameStatus = isValidUsername ? .ready : .error
-                                    }
-                                 }
-                                .onSubmit { next() }
-                                .disabled(usernameStatus == .done || usernameStatus == .loading)
                         }
+                        
+                        if (smsStatus == .done) {
+                            HStack {
+                                Chevron(status: usernameStatus)
+                                TextField("Choose a username", text: $username)
+                                    .font(.system(size: 18))
+                                    .focused($focusedField, equals: .username)
+                                    .disableAutocorrection(true)
+                                    .textInputAutocapitalization(.never)
+                                    .onAppear {
+                                        focusedField = .username
+                                    }
+                                    .onChange(of: username) {
+                                        if !username.isEmpty {
+                                            // Validate username contains only alphanumeric & _
+                                            isValidUsername = username.checkRegex(pattern: #"^[A-Za-z0-9_]{1,20}$"#)
+                                            usernameStatus = isValidUsername ? .ready : .error
+                                        }
+                                    }
+                                    .onSubmit { next() }
+                                    .disabled(usernameStatus == .done || usernameStatus == .loading)
+                            }
                             .padding(.vertical, -5)
                             .foregroundColor(usernameStatus == .done ? .gray : .primary)
-                    }
-                    
-                    if (phoneStatus == .done) {
-                        HStack {
-                            Chevron(status: smsStatus)
-                            TextField("Enter SMS code", text: $smsCode)
-                                .font(.system(size: 18))
-                                .keyboardType(.numberPad)
-                                .disableAutocorrection(true)
-                                .onChange(of: smsCode) {
-                                   if !smsCode.isEmpty {
-                                       smsCode = smsCode.formatFromMask(mask: "XXX-XXX")
-                                       isValidSms = smsCode.checkRegex(pattern: #"^\d{3}[-]\d{3}$"#)
-                                    }
-                                 }
-                                .onSubmit { next() }
-                                .disabled(smsStatus == .done || smsStatus == .loading)
                         }
+                        
+                        if (phoneStatus == .done) {
+                            HStack {
+                                Chevron(status: smsStatus)
+                                TextField("Enter SMS code", text: $smsCode)
+                                    .font(.system(size: 18))
+                                    .focused($focusedField, equals: .sms)
+                                    .keyboardType(.numberPad)
+                                    .disableAutocorrection(true)
+                                    .onAppear {
+                                        focusedField = .sms
+                                    }
+                                    .onChange(of: smsCode) {
+                                        if !smsCode.isEmpty {
+                                            smsCode = smsCode.formatFromMask(mask: "XXXXXX")
+                                            isValidSms = smsCode.checkRegex(pattern: #"^\d{3}\d{3}$"#)
+                                        }
+                                    }
+                                    .onChange(of: network.user) {
+                                        if network.user != nil {
+                                            if network.user!.username == nil {
+                                                // Username undefined, continue flow..
+                                                withAnimation {
+                                                    smsStatus = .done
+                                                }
+                                            } else {
+                                                // If successful, will set loggedOut to false & end flow
+                                                network.saveCredentials()
+                                            }
+                                        }
+                                    }
+                                    .onSubmit { next() }
+                                    .disabled(smsStatus == .done || smsStatus == .loading)
+                            }
                             .padding(.vertical, -5)
                             .foregroundColor(smsStatus == .done ? .gray : .primary)
-                    }
-                    
-                    HStack {
-                        Chevron(status: phoneStatus)
-                        TextField("Enter your phone number", text: $phoneNumber)
-                            .font(.system(size: 18))
-                            .keyboardType(.numberPad)
-                            .disableAutocorrection(true)
-                            .onChange(of: phoneNumber) {
-                               if !phoneNumber.isEmpty {
-                                   phoneNumber = phoneNumber.formatFromMask(mask: "(XXX) XXX-XXXX")
-                                   isValidPhone = phoneNumber.checkRegex(pattern: #"^\(?\d{3}\)?[ -]?\d{3}[ -]?\d{4}$"#)
+                        }
+                        
+                        HStack {
+                            Chevron(status: phoneStatus)
+                            TextField("Enter your phone number", text: $phoneNumber)
+                                .font(.system(size: 18))
+                                .focused($focusedField, equals: .phone)
+                                .keyboardType(.numberPad)
+                                .disableAutocorrection(true)
+                                .onAppear {
+                                    focusedField = .phone
                                 }
-                             }
-                            .onSubmit { next() }
-                            .disabled(phoneStatus == .done || phoneStatus == .loading)
+                                .onChange(of: phoneNumber) {
+                                    if !phoneNumber.isEmpty {
+                                        phoneNumber = phoneNumber.formatFromMask(mask: "(XXX) XXX-XXXX")
+                                        isValidPhone = phoneNumber.checkRegex(pattern: #"^\(?\d{3}\)?[ -]?\d{3}[ -]?\d{4}$"#)
+                                    }
+                                }
+                                .onChange(of: network.codeSent) {
+                                    if network.codeSent {
+                                        withAnimation {
+                                            phoneStatus = .done
+                                        }
+                                    }
+                                }
+                                .onSubmit { next() }
+                                .disabled(phoneStatus == .done || phoneStatus == .loading)
+                        }
+                            .padding(.vertical, -5)
+                            .foregroundColor(phoneStatus == .done ? .gray : .primary)
+                            .transition(.asymmetric(
+                                insertion: .push(from: .bottom).animation(.easeInOut(duration: 0.5)),
+                                removal: .push(from: .top).animation(.easeInOut(duration: 0.08)))
+                            )
                     }
-                        .padding(.vertical, -5)
-                        .foregroundColor(phoneStatus == .done ? .gray : .primary)
-                        .transition(.asymmetric(
-                            insertion: .push(from: .bottom).animation(.easeInOut(duration: 0.5)),
-                            removal: .push(from: .top).animation(.easeInOut(duration: 0.08)))
-                        )
+                        .formStyle(.columns)
                     
                     Spacer()
                     
@@ -195,7 +242,7 @@ struct OnboardingView: View {
                             .bold(true)
                             .fillFrame(.horizontal)
                     })
-                    .disabled(!((phoneStatus == .ready && isValidPhone) || (smsStatus == .ready && isValidSms) || (usernameStatus == .ready && isValidUsername) || (nameStatus == .ready && !name.isEmpty)))
+                        .disabled(!((phoneStatus == .ready && isValidPhone) || (smsStatus == .ready && isValidSms) || (usernameStatus == .ready && isValidUsername) || (nameStatus == .ready && !name.isEmpty)))
                 } else {
                     Spacer()
                     
@@ -228,6 +275,10 @@ struct OnboardingView: View {
                 .padding()
         }
     }
+}
+
+enum FocusedField {
+    case phone, sms, username, name
 }
 
 enum Status {
