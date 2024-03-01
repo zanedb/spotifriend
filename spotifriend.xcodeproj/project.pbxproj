@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F39F27C2B86A1D0003DA4BC /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F39F27B2B86A1D0003DA4BC /* Network.swift */; };
 		2F4160552B0835B9006545B6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4160542B0835B9006545B6 /* SettingsView.swift */; };
+		2F5723CC2B8305C1003FEC0C /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5723CB2B8305C1003FEC0C /* OnboardingView.swift */; };
 		2FDFD6A82A897A2400B734A5 /* spotifriendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6A72A897A2400B734A5 /* spotifriendApp.swift */; };
 		2FDFD6AC2A897A2600B734A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FDFD6AB2A897A2600B734A5 /* Assets.xcassets */; };
 		2FDFD6AF2A897A2600B734A5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FDFD6AE2A897A2600B734A5 /* Preview Assets.xcassets */; };
@@ -44,7 +46,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F39F27B2B86A1D0003DA4BC /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		2F4160542B0835B9006545B6 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2F5723CB2B8305C1003FEC0C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		2F5723DA2B830BC2003FEC0C /* spotifriend.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = spotifriend.entitlements; sourceTree = "<group>"; };
 		2FDFD6A42A897A2400B734A5 /* spotifriend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spotifriend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FDFD6A72A897A2400B734A5 /* spotifriendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spotifriendApp.swift; sourceTree = "<group>"; };
 		2FDFD6AB2A897A2600B734A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -115,10 +120,12 @@
 		2FDFD6A62A897A2400B734A5 /* spotifriend */ = {
 			isa = PBXGroup;
 			children = (
+				2F5723DA2B830BC2003FEC0C /* spotifriend.entitlements */,
 				2FDFD6D92A897B4700B734A5 /* Views */,
 				2FDFD6A72A897A2400B734A5 /* spotifriendApp.swift */,
 				2FDFD6AB2A897A2600B734A5 /* Assets.xcassets */,
 				2FDFD6DF2A8985AC00B734A5 /* FriendActivity.swift */,
+				2F39F27B2B86A1D0003DA4BC /* Network.swift */,
 				2FDFD6E12A8985F800B734A5 /* Structs.swift */,
 				2FDFD6E32A89862B00B734A5 /* Utils.swift */,
 				2FDFD6B52A897A2600B734A5 /* Info.plist */,
@@ -161,6 +168,7 @@
 				2F4160542B0835B9006545B6 /* SettingsView.swift */,
 				2FDFD6E52A898B7F00B734A5 /* ActivityList.swift */,
 				2FDFD6DD2A89845500B734A5 /* ActivityRow.swift */,
+				2F5723CB2B8305C1003FEC0C /* OnboardingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -306,11 +314,13 @@
 				2FDFD6E62A898B7F00B734A5 /* ActivityList.swift in Sources */,
 				2FDFD6E22A8985F800B734A5 /* Structs.swift in Sources */,
 				2FDFD6E42A89862B00B734A5 /* Utils.swift in Sources */,
+				2F39F27C2B86A1D0003DA4BC /* Network.swift in Sources */,
 				2FDFD6D82A897AEC00B734A5 /* ContentView.swift in Sources */,
 				2FDFD6E92A898BFB00B734A5 /* ErrorView.swift in Sources */,
 				2F4160552B0835B9006545B6 /* SettingsView.swift in Sources */,
 				2FDFD6EB2A898EE500B734A5 /* LoginView.swift in Sources */,
 				2FDFD6A82A897A2400B734A5 /* spotifriendApp.swift in Sources */,
+				2F5723CC2B8305C1003FEC0C /* OnboardingView.swift in Sources */,
 				2FDFD6E02A8985AC00B734A5 /* FriendActivity.swift in Sources */,
 				2FDFD6DE2A89845500B734A5 /* ActivityRow.swift in Sources */,
 			);
@@ -401,7 +411,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -457,7 +467,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -472,8 +482,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = spotifriend/spotifriend.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"spotifriend/Preview Content\"";
 				DEVELOPMENT_TEAM = 69MX9ABFW5;
 				ENABLE_PREVIEWS = YES;
@@ -486,11 +497,12 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = app.zane.spotifriend;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -504,8 +516,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = spotifriend/spotifriend.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"spotifriend/Preview Content\"";
 				DEVELOPMENT_TEAM = 69MX9ABFW5;
 				ENABLE_PREVIEWS = YES;
@@ -518,11 +531,12 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = app.zane.spotifriend;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
