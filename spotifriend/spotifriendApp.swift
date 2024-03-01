@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct spotifriendApp: App {
+    var network = Network()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(network)
         }
     }
 }
