@@ -17,8 +17,12 @@ class Network: ObservableObject {
     @Published var loggedOut: Bool = false
     
     init() {
+        // MARK: disable auth for now, just load onboarding on first launch
+        if (SSApp.isFirstLaunch) { loggedOut = true }
+        
         guard let token = UserDefaults.standard.string(forKey: "apiAuthToken") else {
-            loggedOut = true
+            // MARK: disable auth for now
+            // loggedOut = true
             return
         }
         self.token = token
