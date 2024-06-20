@@ -32,20 +32,22 @@ struct OnboardingView: View {
         let e164Number = "+1\(phoneNumber.formatFromMask(mask: "XXXXXXXXXX"))"
         // User has submitted phone number, send them SMS
         if (phoneStatus == .ready && isValidPhone) {
-            network.authenticateWithPhone(number: e164Number)
+            // MARK: disable auth for now
+            // network.authenticateWithPhone(number: e164Number)
             
             withAnimation {
-                phoneStatus = .loading
+                phoneStatus = .done
             }
         }
         
         // User has submitted SMS code
         if (phoneStatus == .done && isValidSms && smsStatus != .done) {
             // Sign in user
-            network.confirmSmsCode(number: e164Number, code: smsCode)
+            // MARK: disable auth for now
+            // network.confirmSmsCode(number: e164Number, code: smsCode)
             
             withAnimation {
-                smsStatus = .loading
+                smsStatus = .done
             }
         }
         
@@ -64,11 +66,15 @@ struct OnboardingView: View {
             // Assuming name is valid ..
             
             // Update user object w/ info
-            network.setUserInfo(username: username, name: name)
+            // MARK: disable auth for now
+            // network.setUserInfo(username: username, name: name)
             
             withAnimation {
-                nameStatus = .loading
+                nameStatus = .done
             }
+            
+            // MARK: disable auth for now
+            network.loggedOut = false
         }
     }
     
@@ -248,7 +254,9 @@ struct OnboardingView: View {
                     
                     Button(action: {
                         withAnimation {
-                            showForm.toggle()
+                            // MARK: disable auth for now
+                            // showForm.toggle()
+                            network.loggedOut = false
                         }
                     }, label: {
                         Text("Let’s go")

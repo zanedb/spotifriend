@@ -69,7 +69,7 @@ struct ActivityList: View {
                     }
                 }
                 else {
-                    ErrorView(icon: "wifi.slash", title: "Network Unavailable", subtitle: "Go to a Starbucks, perhaps?")
+                    ErrorView(icon: "wifi.slash", title: "Network Unavailable", subtitle: "This sucks for both of us.")
                 }
             }
         }
