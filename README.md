@@ -8,7 +8,7 @@ Spotify Friend Activity on iOS.
 
 I wrote this app in 2023 with the intention of recreating Spotify's desktop sidebar in Stage Manager.
 
-<img src="https://i.imgur.com/Brkjoek.png" alt="iPad Pro in Stage Manager with the described setup" height="512">
+<img src="https://i.imgur.com/Brkjoek.png" alt="iPad Pro in Stage Manager with the described setup" width="512">
 
 I based the [ViewModel](https://github.com/zanedb/spotifriend/blob/main/spotifriend/FriendActivity.swift) on aviwad's [Friend Activity for Spotify](https://github.com/aviwad/Friend-Activity-for-Spotify), and re-did all the views to my personal preference. It was a great learning experience for SwiftUI.
 
