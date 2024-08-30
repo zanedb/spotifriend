@@ -75,7 +75,7 @@ struct ActivityRow: View {
                 if (isListeningNow) {
                     Image(systemName: "waveform")
                 } else {
-                    Text(timestamp)
+                    Text(timestamp.filter{ !$0.isWhitespace })
                         .font(.caption)
                         .padding(.top, 2)
                 }
