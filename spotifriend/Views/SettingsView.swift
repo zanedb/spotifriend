@@ -44,7 +44,7 @@ struct SettingsView: View {
                     HStack {
                         Text("Version")
                         Spacer()
-                        Text("2024.06 (\(SSApp.version))")
+                        Text("2024.08 (\(SSApp.version))")
                             .foregroundColor(.gray)
                     }
                     
