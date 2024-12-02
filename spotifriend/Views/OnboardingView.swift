@@ -270,7 +270,7 @@ struct OnboardingView: View {
                         .background(.primary)
                         .cornerRadius(10)
                     
-                    Text(markdown: "By continuing, you agree to our\n[Terms](https://zane.app/terms) and [Privacy Policy](https://zane.app/privacy).")
+                    Text(markdown: "By continuing, you agree to our\n[Terms](https://zane.app/tc) and [Privacy Policy](https://zane.app/privacy).")
                         .multilineTextAlignment(.center)
                         .font(.system(size: 15))
                         .fontWeight(.light)
