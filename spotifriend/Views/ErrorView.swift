@@ -40,7 +40,7 @@ struct ErrorViews_Previews: PreviewProvider {
                 .navigationBarTitleDisplayMode(.inline)
         }
         NavigationView {
-            ErrorView(icon: "wifi.slash", title: "Network Unavailable", subtitle: "Go to a Starbucks, perhaps?")
+            ErrorView(icon: "wifi.slash", title: "Network Unavailable", subtitle: "Go to a library, perhaps?")
                 .navigationTitle("Friend Activity")
                 .navigationBarTitleDisplayMode(.inline)
         }
