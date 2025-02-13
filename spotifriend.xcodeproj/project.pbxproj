@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F39F27C2B86A1D0003DA4BC /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F39F27B2B86A1D0003DA4BC /* Network.swift */; };
 		2F4160552B0835B9006545B6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4160542B0835B9006545B6 /* SettingsView.swift */; };
 		2F5723CC2B8305C1003FEC0C /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5723CB2B8305C1003FEC0C /* OnboardingView.swift */; };
 		2FDFD6A82A897A2400B734A5 /* spotifriendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6A72A897A2400B734A5 /* spotifriendApp.swift */; };
@@ -45,7 +44,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2F39F27B2B86A1D0003DA4BC /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		2F4160542B0835B9006545B6 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2F5723CB2B8305C1003FEC0C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		2F5723DA2B830BC2003FEC0C /* spotifriend.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = spotifriend.entitlements; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 				2FDFD6AB2A897A2600B734A5 /* Assets.xcassets */,
 				2FDFD6DF2A8985AC00B734A5 /* FriendActivity.swift */,
 				2FDFD6E12A8985F800B734A5 /* Structs.swift */,
-				2F39F27B2B86A1D0003DA4BC /* Network.swift */,
 				2FDFD6E32A89862B00B734A5 /* Utils.swift */,
 				2FDFD6B52A897A2600B734A5 /* Info.plist */,
 				2FDFD6AD2A897A2600B734A5 /* Preview Content */,
@@ -310,7 +307,6 @@
 				2FDFD6E62A898B7F00B734A5 /* ActivityList.swift in Sources */,
 				2FDFD6E22A8985F800B734A5 /* Structs.swift in Sources */,
 				2FDFD6E42A89862B00B734A5 /* Utils.swift in Sources */,
-				2F39F27C2B86A1D0003DA4BC /* Network.swift in Sources */,
 				2FDFD6D82A897AEC00B734A5 /* ContentView.swift in Sources */,
 				2FDFD6E92A898BFB00B734A5 /* ErrorView.swift in Sources */,
 				2F4160552B0835B9006545B6 /* SettingsView.swift in Sources */,

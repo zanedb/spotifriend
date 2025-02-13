@@ -30,36 +30,6 @@ enum SSApp {
     }()
 }
 
-extension String {
-    // https://medium.com/@mrtrinh5293/pure-swiftui-phone-number-formatter-a-manual-approach-free-from-third-party-apis-and-uikit-75b83027e567
-    func formatFromMask(mask: String) -> String {
-        let cleanNumber = components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-        
-        var result = ""
-        var startIndex = cleanNumber.startIndex
-        let endIndex = cleanNumber.endIndex
-        
-        for char in mask where startIndex < endIndex {
-            if char == "X" {
-                result.append(cleanNumber[startIndex])
-                startIndex = cleanNumber.index(after: startIndex)
-            } else {
-                result.append(char)
-            }
-        }
-        
-        return result
-    }
-    
-    func checkRegex(pattern: String) -> Bool {
-        let result = self.range(
-            of: pattern,
-            options: .regularExpression
-        )
-        return (result != nil)
-    }
-}
-
 // MARK - Markdown Support
 // https://github.com/sindresorhus/Blear/blob/5326e9b891e609c23641d43b966501afe21019ca/Blear/Utilities.swift#L1881
 extension Text {
