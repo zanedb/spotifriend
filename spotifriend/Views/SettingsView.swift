@@ -12,6 +12,7 @@ struct SettingsView: View {
     @EnvironmentObject private var viewModel: FriendActivityBackend
     @AppStorage("alwaysDark") var alwaysDark = false
     @AppStorage("monospaced") var monospaced = false
+    let pasteboard = UIPasteboard.general
     
     var body: some View {
         NavigationStack {
@@ -41,11 +42,14 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    HStack {
-                        Text("Version")
-                        Spacer()
-                        Text("2024.12 (\(SSApp.version))")
-                            .foregroundColor(.gray)
+                    Button(action: { pasteboard.string = SSApp.datedVersion }) {
+                        HStack {
+                            Text("Version")
+                                .foregroundColor(.primary)
+                            Spacer()
+                            Text(SSApp.datedVersion)
+                                .foregroundColor(.gray)
+                        }
                     }
                     
                     NavigationLink {
