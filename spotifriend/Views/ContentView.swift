@@ -42,6 +42,12 @@ struct ContentView: View {
             )) {
                 LoginView()
             }
+            .fullScreenCover(isPresented: Binding(
+                get: { viewModel.state == .initial },
+                set: { _ in }
+            )) {
+                OnboardingView()
+            }
             .preferredColorScheme(alwaysDark ? .dark : colorScheme)
             .environmentObject(viewModel)
     }

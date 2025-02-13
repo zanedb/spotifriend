@@ -16,6 +16,7 @@ import SDWebImage
 @MainActor final class FriendActivityBackend: ObservableObject {
     // MARK: - State Enums
     enum State: Equatable {
+        case initial
         case idle
         case loading
         case loaded
@@ -46,6 +47,8 @@ import SDWebImage
 
     // MARK: - Initialization
     init() {
+        if (SSApp.isFirstLaunch) { state = .initial }
+        
         setupNetworkMonitoring()
     }
 
@@ -54,6 +57,7 @@ import SDWebImage
         networkMonitor.pathUpdateHandler = { [weak self] path in
             Task { @MainActor in
                 guard let self else { return }
+                if case .initial = self.state { return }
                 
                 switch path.status {
                 case .satisfied:
@@ -108,7 +112,7 @@ import SDWebImage
     }
     
     private func fetchAccessToken(cookie: String) async throws -> String {
-        let tokenResponse: accessTokenJSON = try await fetch(
+        let tokenResponse: SpotifyAccessToken = try await fetch(
             urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player",
             httpValue: "sp_dc=\(cookie)",
             httpField: "Cookie",
@@ -118,7 +122,7 @@ import SDWebImage
     }
     
     private func fetchFriends(accessToken: String) async throws -> [Friend] {
-        let response: Welcome = try await fetch(
+        let response: FriendList = try await fetch(
             urlString: "https://guc-spclient.spotify.com/presence-view/v1/buddylist",
             httpValue: "Bearer \(accessToken)",
             httpField: "Authorization",
