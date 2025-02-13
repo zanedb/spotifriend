@@ -57,8 +57,8 @@ extension NavigationState: WKNavigationDelegate {
         self.url = webView.url
         
         Task {
-            if await FriendActivityBackend.shared.loggedOut == true {
-                await FriendActivityBackend.shared.checkIfLoggedIn()
+            if FriendActivityBackend.shared.state == .loggedOut {
+                FriendActivityBackend.shared.checkLoginStatus()
             }
         }
         

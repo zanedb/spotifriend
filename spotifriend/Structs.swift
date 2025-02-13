@@ -36,196 +36,228 @@ struct Welcome: Codable {
     let friends: [Friend]
 }
 
+// MARK: - SpotifyIdentifiable
+protocol SpotifyIdentifiable: Identifiable {
+    var uri: String { get }
+    var url: URL { get }
+}
+
+extension SpotifyIdentifiable {
+    var id: String { uri }
+}
+
 // MARK: - Friend
 struct Friend: Codable, Identifiable {
-    let humanTimestamp : (humanTimestamp: String, nowOrNot: Bool)
     let timestamp: Int
     let user: User
     let track: Track
-    let id : String
-
-    struct Track: Codable, Identifiable {
-        let id: String
-        let uri, name: String
-        let url: URL
-        let imageURL: URL?
-        let album, artist: Album
-        let context: Context
-        
-        enum CodingKeys: String, CodingKey {
-            case uri, name
-            //case url
-            case imageURL = "imageUrl"
-            case album, artist
-            case context
-        }
-        
-        // solely for testing purposes
-        init() {
-            self.name = "kpop track"
-            self.uri = "spotify:track:5TSN8BueHQSo8LM7m2zsf9"
-            self.id = self.uri
-            self.url = URL(string: "https://open.spotify.com/track/5TSN8BueHQSo8LM7m2zsf9")!
-            self.imageURL = nil
-            self.album = Album()
-            self.artist = self.album
-            self.context = Context()
-        }
-        
-        init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.uri = try container.decode(String.self, forKey: .uri)
-            self.name = try container.decode(String.self, forKey: .name)
-            self.imageURL = try {
-                if let imageUrl = try container.decodeIfPresent(String.self, forKey: .imageURL) {
-                    return URL(string: "https" + imageUrl.dropFirst(4))
-                }
-                return nil
-            }()
-            self.album = try container.decode(Friend.Album.self, forKey: .album)
-            self.artist = try container.decode(Friend.Album.self, forKey: .artist)
-            self.context = try container.decode(Friend.Context.self, forKey: .context)
-            self.url = getSpotifyUrl(initialUrl: self.uri)
-            self.id = self.uri
-        }
+    let id: String
+    
+    var formattedTimestamp: (display: String, isNow: Bool) {
+        formatTimestamp(timestamp)
     }
     
-    struct Album: Codable, Identifiable {
-        let uri, name: String
-        let url: URL
-        let id: String
-        
-        
-        private enum CodingKeys: String, CodingKey {
-            case uri, name
-        }
-        
-        // solely for testing purposes
-        init() {
-            self.uri = "spotify:album:7hBhbBkQzO1lkeVAorr9ZU"
-            self.url = URL(string: "https://open.spotify.com/album/7hBhbBkQzO1lkeVAorr9ZU")!
-            self.name = "kpop album"
-            self.id = self.uri
-        }
-        
-        init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.uri = try container.decode(String.self, forKey: .uri)
-            self.name = try container.decode(String.self, forKey: .name)
-            self.url = getSpotifyUrl(initialUrl: self.uri)
-            self.id = self.uri
-        }
-    }
-    
-    struct Context: Codable, Identifiable {
-        let uri, name: String
-        let index: Int
-        let url: URL
-        let id: String
-        
-        private enum CodingKeys: String, CodingKey {
-            case uri, name
-            case index
-        }
-        
-        // solely for testing purposes
-        init() {
-            self.uri = "spotify:playlist:5Ayh396jSuy1BMjjktfhIx"
-            self.name = "idk"
-            self.index = 0
-            self.url = URL(string: "https://open.spotify.com/playlist/5Ayh396jSuy1BMjjktfhIx")!
-            self.id = self.uri
-        }
-        
-        init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.uri = try container.decode(String.self, forKey: .uri)
-            self.name = try container.decode(String.self, forKey: .name)
-            self.index = try container.decode(Int.self, forKey: .index)
-            self.url = getSpotifyUrl(initialUrl: self.uri)
-            self.id = self.uri
-        }
-    }
-    struct User: Codable, Identifiable {
-        let uri, name: String
-        let imageURL: URL?
-        let url: URL
-        let id: String
-
-        private enum CodingKeys: String, CodingKey {
-            case uri,name
-            case imageURL = "imageUrl"
-            // case url
-        }
-        
-        // solely for testing purposes
-        init() {
-            self.name = "Demo User"
-            self.uri = "spotify:user:ramitbratabiswas"
-            self.url = URL(string: "https://open.spotify.com/user/ramitbratabiswas")!
-            self.imageURL = nil
-            self.id = self.uri
-        }
-        
-        init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.uri = try container.decode(String.self, forKey: .uri)
-            self.name = try container.decode(String.self, forKey: .name)
-            self.imageURL = try {
-                if let imageUrl = try container.decodeIfPresent(String.self, forKey: .imageURL) {
-                    return URL(string: imageUrl)
-                }
-                return nil
-            }()
-            self.url = getSpotifyUserUrl(initialUrl: self.uri)
-            self.id = self.uri
-        }
-    }
-    
-    enum CodingKeys: String, CodingKey {
-        //case humanTimestamp
-        case timestamp
-        case user
-        case track
-        // case id
-    }
-    
-    // solely for testing purposes
-    init() {
-        self.timestamp = 1690489932417
-        self.humanTimestamp = timePlayer(initialTimeStamp: self.timestamp)
-        self.user = User()
-        self.track = Track()
-        self.id = self.user.uri
+    private enum CodingKeys: String, CodingKey {
+        case timestamp, user, track
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.timestamp = try container.decode(Int.self, forKey: .timestamp)
-        self.user = try container.decode(Friend.User.self, forKey: .user)
-        self.track = try container.decode(Friend.Track.self, forKey: .track)
-        self.humanTimestamp = timePlayer(initialTimeStamp: self.timestamp)
-        self.id = self.user.uri
+        timestamp = try container.decode(Int.self, forKey: .timestamp)
+        user = try container.decode(User.self, forKey: .user)
+        track = try container.decode(Track.self, forKey: .track)
+        id = user.uri
+    }
+}
+
+// MARK: - Track
+extension Friend {
+    struct Track: Codable, Identifiable, SpotifyIdentifiable {
+        let uri: String
+        let name: String
+        let url: URL
+        let imageURL: URL?
+        let album: Album
+        let artist: Album
+        let context: Context
+        
+        var id: String { uri }
+        
+        private enum CodingKeys: String, CodingKey {
+            case uri, name
+            case imageURL = "imageUrl"
+            case album, artist, context
+        }
+        
+        init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            uri = try container.decode(String.self, forKey: .uri)
+            name = try container.decode(String.self, forKey: .name)
+            imageURL = try container.decodeIfPresent(String.self, forKey: .imageURL)
+                .flatMap { URL(string: "https" + $0.dropFirst(4)) }
+            album = try container.decode(Album.self, forKey: .album)
+            artist = try container.decode(Album.self, forKey: .artist)
+            context = try container.decode(Context.self, forKey: .context)
+            url = SpotifyURLBuilder.build(fromURI: uri)
+        }
+    }
+}
+
+// MARK: - Album
+extension Friend {
+    struct Album: Codable, Identifiable, SpotifyIdentifiable {
+        let uri: String
+        let name: String
+        let url: URL
+        
+        private enum CodingKeys: String, CodingKey {
+            case uri, name
+        }
+        
+        init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            uri = try container.decode(String.self, forKey: .uri)
+            name = try container.decode(String.self, forKey: .name)
+            url = SpotifyURLBuilder.build(fromURI: uri)
+        }
+    }
+}
+
+// MARK: - Context
+extension Friend {
+    struct Context: Codable, Identifiable, SpotifyIdentifiable {
+        let uri: String
+        let name: String
+        let index: Int
+        let url: URL
+        
+        private enum CodingKeys: String, CodingKey {
+            case uri, name, index
+        }
+        
+        init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            uri = try container.decode(String.self, forKey: .uri)
+            name = try container.decode(String.self, forKey: .name)
+            index = try container.decode(Int.self, forKey: .index)
+            url = SpotifyURLBuilder.build(fromURI: uri)
+        }
+    }
+}
+
+// MARK: - User
+extension Friend {
+    struct User: Codable, Identifiable, SpotifyIdentifiable {
+        let uri: String
+        let name: String
+        let imageURL: URL?
+        let url: URL
+        
+        private enum CodingKeys: String, CodingKey {
+            case uri, name
+            case imageURL = "imageUrl"
+        }
+        
+        init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            uri = try container.decode(String.self, forKey: .uri)
+            name = try container.decode(String.self, forKey: .name)
+            imageURL = try container.decodeIfPresent(String.self, forKey: .imageURL)
+                .flatMap { URL(string: $0) }
+            url = SpotifyURLBuilder.buildUserURL(fromURI: uri)
+        }
+    }
+}
+
+// MARK: - Spotify URL Builder
+enum SpotifyURLBuilder {
+    static func build(fromURI uri: String) -> URL {
+        let components = uri.split(separator: ":")
+        guard components.count >= 2 else {
+            return URL(string: "https://open.spotify.com")!
+        }
+        
+        let type = components[1]
+        let id = components[2]
+        return URL(string: "https://open.spotify.com/\(type)/\(id)")!
     }
     
+    static func buildUserURL(fromURI uri: String) -> URL {
+        let userId = uri.split(separator: ":").last ?? ""
+        return URL(string: "https://open.spotify.com/user/\(userId)")!
+    }
+}
+
+// MARK: - Timestamp Formatting
+func formatTimestamp(_ timestamp: Int) -> (display: String, isNow: Bool) {
+    let timeStamp = Int(abs(Date.init(timeIntervalSince1970: TimeInterval((timestamp/1000))).timeIntervalSinceNow) / 60)
+    var timeString: String
+    var isNow = false
     
+    if (timeStamp > (24 * 60)) {
+        timeString = "\(timeStamp / (24 * 60))d"
+    }
+    else if (timeStamp > 60) {
+        timeString = "\(timeStamp / 60)hr"
+    }
+    else if (timeStamp > 5) {
+        timeString = "\(timeStamp)m"
+    }
+    else {
+        timeString = "now"; isNow = true
+    }
+    
+    return (timeString, isNow)
 }
 
-struct TokenError: Codable {
-    let status: Int
-    let message: String
-}
-struct ErrorWrapper: Codable {
-    let error: TokenError
-}
-struct spDcErrorWrapper: Codable {
-    let error: spDcTokenError
-}
-struct spDcTokenError: Codable {
-    let code: Int
-    let message: String
+#if DEBUG
+// MARK: - Preview Helpers
+// Ugh, I can't get this to work.. later..
+//extension Friend {
+//    static var preview: Friend {
+//        Friend(
+//            timestamp: Int(Date().timeIntervalSince1970 * 1000),
+//            user: .preview,
+//            track: .preview,
+//            id: "preview"
+//        )
+//    }
+//}
+
+extension Friend.User {
+    static var preview: Friend.User {
+        try! JSONDecoder().decode(Friend.User.self, from: """
+        {
+            "uri": "spotify:user:previewuser",
+            "name": "Preview User",
+            "imageUrl": null
+        }
+        """.data(using: .utf8)!)
+    }
 }
 
-enum GetOrPost {
-    case get,post
+extension Friend.Track {
+    static var preview: Friend.Track {
+        try! JSONDecoder().decode(Friend.Track.self, from: """
+        {
+            "uri": "spotify:track:previewtrack",
+            "name": "Preview Track",
+            "imageUrl": null,
+            "album": {
+                "uri": "spotify:album:previewalbum",
+                "name": "Preview Album"
+            },
+            "artist": {
+                "uri": "spotify:artist:previewartist",
+                "name": "Preview Artist"
+            },
+            "context": {
+                "uri": "spotify:playlist:previewplaylist",
+                "name": "Preview Playlist",
+                "index": 0
+            }
+        }
+        """.data(using: .utf8)!)
+    }
 }
+#endif
