@@ -16,7 +16,6 @@
 		2FDFD6C92A897A2700B734A5 /* spotifriendUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6C82A897A2700B734A5 /* spotifriendUITests.swift */; };
 		2FDFD6CB2A897A2700B734A5 /* spotifriendUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6CA2A897A2700B734A5 /* spotifriendUITestsLaunchTests.swift */; };
 		2FDFD6D82A897AEC00B734A5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6D72A897AEC00B734A5 /* ContentView.swift */; };
-		2FDFD6DC2A897D6300B734A5 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2FDFD6DB2A897D6300B734A5 /* SDWebImageSwiftUI */; };
 		2FDFD6DE2A89845500B734A5 /* ActivityRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6DD2A89845500B734A5 /* ActivityRow.swift */; };
 		2FDFD6E02A8985AC00B734A5 /* FriendActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6DF2A8985AC00B734A5 /* FriendActivity.swift */; };
 		2FDFD6E22A8985F800B734A5 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6E12A8985F800B734A5 /* Structs.swift */; };
@@ -185,7 +184,6 @@
 			);
 			name = spotifriend;
 			packageProductDependencies = (
-				2FDFD6DB2A897D6300B734A5 /* SDWebImageSwiftUI */,
 			);
 			productName = spotifriend;
 			productReference = 2FDFD6A42A897A2400B734A5 /* spotifriend.app */;
@@ -648,26 +646,9 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-/* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		2FDFD6DA2A897D6300B734A5 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		2FDFD6DB2A897D6300B734A5 /* SDWebImageSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2FDFD6DA2A897D6300B734A5 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
-			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
+/* End XCConfigurationList section */
 	};
 	rootObject = 2FDFD69C2A897A2400B734A5 /* Project object */;
 }

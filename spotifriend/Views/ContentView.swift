@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
