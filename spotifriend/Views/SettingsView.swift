@@ -17,7 +17,7 @@ struct SettingsView: View {
         NavigationStack {
             Form {
                 Section {
-                    Button(action: { viewModel.logout() }) {
+                    Button(action: { viewModel.logout(); dismiss() }) {
                         HStack {
                             Text("Disconnect")
                             Spacer()
