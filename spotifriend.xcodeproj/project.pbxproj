@@ -25,7 +25,6 @@
 		2FDFD6E62A898B7F00B734A5 /* ActivityList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6E52A898B7F00B734A5 /* ActivityList.swift */; };
 		2FDFD6E92A898BFB00B734A5 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6E82A898BFB00B734A5 /* ErrorView.swift */; };
 		2FDFD6EB2A898EE500B734A5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6EA2A898EE500B734A5 /* LoginView.swift */; };
-		2FDFD6EE2A898F7500B734A5 /* SwiftUIBackports in Frameworks */ = {isa = PBXBuildFile; productRef = 2FDFD6ED2A898F7500B734A5 /* SwiftUIBackports */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +74,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FDFD6EE2A898F7500B734A5 /* SwiftUIBackports in Frameworks */,
 				2FDFD6DC2A897D6300B734A5 /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,7 +189,6 @@
 			name = spotifriend;
 			packageProductDependencies = (
 				2FDFD6DB2A897D6300B734A5 /* SDWebImageSwiftUI */,
-				2FDFD6ED2A898F7500B734A5 /* SwiftUIBackports */,
 			);
 			productName = spotifriend;
 			productReference = 2FDFD6A42A897A2400B734A5 /* spotifriend.app */;
@@ -267,7 +264,6 @@
 			mainGroup = 2FDFD69B2A897A2400B734A5;
 			packageReferences = (
 				2FDFD6DA2A897D6300B734A5 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
-				2FDFD6EC2A898F7500B734A5 /* XCRemoteSwiftPackageReference "SwiftUIBackports" */,
 			);
 			productRefGroup = 2FDFD6A52A897A2400B734A5 /* Products */;
 			projectDirPath = "";
@@ -667,14 +663,6 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		2FDFD6EC2A898F7500B734A5 /* XCRemoteSwiftPackageReference "SwiftUIBackports" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/shaps80/SwiftUIBackports";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -682,11 +670,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2FDFD6DA2A897D6300B734A5 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
-		};
-		2FDFD6ED2A898F7500B734A5 /* SwiftUIBackports */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2FDFD6EC2A898F7500B734A5 /* XCRemoteSwiftPackageReference "SwiftUIBackports" */;
-			productName = SwiftUIBackports;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-//import SwiftUIBackports
 
 struct ActivityList: View {
     @EnvironmentObject var viewModel: FriendActivityBackend
