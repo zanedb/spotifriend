@@ -35,7 +35,9 @@ struct ActivityList: View {
                                 }
                             }
                         } label: {
-                            ActivityRow(imageURL: friend.user.imageURL!, friend: friend.user.name, track: friend.track.name, artist: friend.track.artist.name, context: friend.track.context.name, isAlbum: friend.track.context.uri == friend.track.album.uri, isListeningNow: friend.formattedTimestamp.isNow, timestamp: friend.formattedTimestamp.display)
+                            ActivityRow(
+                                imageURL: friend.user.imageURL!, friend: friend.user.name, track: friend.track.name, artist: friend.track.artist.name, context: friend.track.context.name, isAlbum: friend.track.context.uri == friend.track.album.uri, isListeningNow: friend.formattedTimestamp.isNow, timestamp: friend.formattedTimestamp.display
+                            )
                         }
                         .buttonStyle(.plain)
                     }
@@ -51,22 +53,18 @@ struct ActivityList: View {
                         }
                     case .offline:
                         ErrorView(icon: "wifi.slash", title: "Network Unavailable", subtitle: "This sucks for both of us.")
-                    case .loading:
-                        EmptyView()
-                    case .loggedOut:
-                        EmptyView()
                     case .error(_):
-                        ErrorView(icon: "wifi.slash", title: "Uh-oh!", subtitle: viewModel.notificationState?.message ?? "An error occurred.")
+                        ErrorView(icon: "exclamationmark.circle.fill", title: "Uh-oh!", subtitle: viewModel.notificationState?.message ?? "An error occurred.")
                     default:
-                        ErrorView(icon: "wifi.slash", title: "Uh-oh!", subtitle: viewModel.notificationState?.message ?? "An error occurred.")
+                        EmptyView()
                     }
                 }
             }
                 .onReceive(timer) { _ in
-                    if (viewModel.state != .loggedOut) {
-                        Task {
-                            await viewModel.refreshFriends()
-                        }
+                    guard viewModel.state != .loggedOut else { return }
+                    
+                    Task {
+                        await viewModel.refreshFriends()
                     }
                 }
         } else {
