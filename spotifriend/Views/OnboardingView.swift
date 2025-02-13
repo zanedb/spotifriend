@@ -35,12 +35,15 @@ struct OnboardingView: View {
                         }
                     HStack(alignment: .center) {
                         Spacer()
+                        
+                        Bundle.main.iconFileName
+                            .flatMap { UIImage(named: $0) }
+                            .map {
+                                Image(uiImage: $0)
+                                    .resizable()
+                                    .frame(width: 144, height: 144)
+                                    .cornerRadius(25.263)
                             }
-                            Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
-                                .resizable()
-                                .frame(width: showForm ? 57 : 144, height: showForm ? 57 : 144)
-                                .cornerRadius(showForm ? 10 : 25.263)
-                        })
                         
                         Spacer()
                     }
