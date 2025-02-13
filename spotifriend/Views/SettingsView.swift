@@ -52,10 +52,12 @@ struct SettingsView: View {
                         }
                     }
                     
-                    NavigationLink {
-                        ErrorView(icon: monospaced ? "eye.fill" : "questionmark", title: "", subtitle: "")
-                    } label: {
-                        Text("Libraries")
+                    ShareLink(item: URL(string: "https://zane.link/spot")!) {
+                        HStack {
+                            Text("Share App")
+                            Spacer()
+                            Image(systemName: "square.and.arrow.up")
+                        }
                     }
                 } header: {
                     Text("About")
