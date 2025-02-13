@@ -26,14 +26,9 @@ struct AuthorizationResponse: Decodable {
 }
 
 // MARK: Spotify Access Token JSON
-struct accessTokenJSON: Codable {
+struct SpotifyAccessToken: Codable {
     let accessToken: String
     let isAnonymous: Bool
-}
-
-// MARK: - Welcome
-struct Welcome: Codable {
-    let friends: [Friend]
 }
 
 // MARK: - SpotifyIdentifiable
@@ -44,6 +39,11 @@ protocol SpotifyIdentifiable: Identifiable {
 
 extension SpotifyIdentifiable {
     var id: String { uri }
+}
+
+// MARK: - FriendList
+struct FriendList: Codable {
+    let friends: [Friend]
 }
 
 // MARK: - Friend

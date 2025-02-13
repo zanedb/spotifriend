@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+// MARK - App Global Helpers
 // https://github.com/sindresorhus/Blear/blob/5326e9b891e609c23641d43b966501afe21019ca/Blear/Utilities.swift#L190
 enum SSApp {
     static let idString = Bundle.main.bundleIdentifier!
@@ -59,6 +60,7 @@ extension String {
     }
 }
 
+// MARK - Markdown Support
 // https://github.com/sindresorhus/Blear/blob/5326e9b891e609c23641d43b966501afe21019ca/Blear/Utilities.swift#L1881
 extension Text {
     /**
@@ -69,6 +71,7 @@ extension Text {
     }
 }
 
+// MARK - View.fillFrame()
 // https://github.com/sindresorhus/Blear/blob/5326e9b891e609c23641d43b966501afe21019ca/Blear/Utilities.swift#L1891
 extension View {
     /**
