@@ -66,7 +66,7 @@ struct FriendActivityWidgetEntryView : View {
                                     Rectangle()
                                         .frame(height: 0.5)
                                         .foregroundColor(Color(.systemGray4))
-                                        .offset(y: family == .systemLarge ? 10 : 6)
+                                        .offset(y: family == .systemLarge ? 10 : 8)
                                 }
                             },
                             alignment: .bottom
@@ -76,6 +76,7 @@ struct FriendActivityWidgetEntryView : View {
                 }
             }
         }
+        .containerBackground(.black, for: .widget)
     }
 }
 
