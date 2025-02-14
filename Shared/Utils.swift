@@ -8,12 +8,13 @@
 import Foundation
 import SwiftUI
 
-// MARK - App Global Helpers
+// MARK: - App Global Helpers
 // https://github.com/sindresorhus/Blear/blob/5326e9b891e609c23641d43b966501afe21019ca/Blear/Utilities.swift#L190
 enum SSApp {
     static let idString = Bundle.main.bundleIdentifier!
     static let name = Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String
     static let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    static let datedVersion = "2025.02 (\(version))"
     static let build = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
     static let versionWithBuild = "\(version) (\(build))"
     // static let rootName = Bundle.app.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String
@@ -30,7 +31,7 @@ enum SSApp {
     }()
 }
 
-// MARK - Markdown Support
+// MARK: - Markdown Support
 // https://github.com/sindresorhus/Blear/blob/5326e9b891e609c23641d43b966501afe21019ca/Blear/Utilities.swift#L1881
 extension Text {
     /**
@@ -41,7 +42,7 @@ extension Text {
     }
 }
 
-// MARK - View.fillFrame()
+// MARK: - View.fillFrame()
 // https://github.com/sindresorhus/Blear/blob/5326e9b891e609c23641d43b966501afe21019ca/Blear/Utilities.swift#L1891
 extension View {
     /**
@@ -60,7 +61,7 @@ extension View {
 }
 
 
-// MARK - Icon File Name
+// MARK: - Icon File Name
 // https://stackoverflow.com/a/65153628
 extension Bundle {
     var iconFileName: String? {

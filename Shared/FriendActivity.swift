@@ -11,7 +11,6 @@ import SwiftUI
 import WidgetKit
 import WebKit
 import os
-import SDWebImage
 
 @MainActor final class FriendActivityBackend: ObservableObject {
     // MARK: - State Enums
@@ -81,9 +80,8 @@ import SDWebImage
         state = .loading
         
         do {
-            let friends = try await fetchFriendList()
+            friendArray = try await fetchFriendList()
             state = .loaded
-            friendArray = friends.reversed()
         } catch {
             handleError(error)
         }
@@ -91,7 +89,8 @@ import SDWebImage
     
     func logout() {
         state = .loggedOut
-        UserDefaults.standard.removeObject(forKey: "spDcCookie")
+        UserDefaults(suiteName: "group.app.zane.spotifriend")?
+            .removeObject(forKey: "spDcCookie")
         showNotification("Logged out.")
     }
     
@@ -100,17 +99,17 @@ import SDWebImage
             await checkSpotifyCookie()
         }
     }
-
-    // MARK: - Private Methods
-    private func fetchFriendList() async throws -> [Friend] {
-        guard let cookie = UserDefaults.standard.string(forKey: "spDcCookie") else {
+    
+    func fetchFriendList() async throws -> [Friend] {
+        guard let cookie = UserDefaults(suiteName: "group.app.zane.spotifriend")?.string(forKey: "spDcCookie") else {
             throw AuthError.noCookie
         }
         
         let accessToken = try await fetchAccessToken(cookie: cookie)
         return try await fetchFriends(accessToken: accessToken)
     }
-    
+
+    // MARK: - Private Methods
     private func fetchAccessToken(cookie: String) async throws -> String {
         let tokenResponse: SpotifyAccessToken = try await fetch(
             urlString: "https://open.spotify.com/get_access_token?reason=transport&productType=web_player",
@@ -128,7 +127,7 @@ import SDWebImage
             httpField: "Authorization",
             method: .get
         )
-        return response.friends
+        return response.friends.reversed()
     }
     
     private func fetch<T: Decodable>(
@@ -167,7 +166,14 @@ import SDWebImage
             guard let self else { return }
             
             for cookie in cookies where cookie.name == "sp_dc" {
-                UserDefaults.standard.set(cookie.value, forKey: "spDcCookie")
+                if let groupDefaults = UserDefaults(suiteName: "group.app.zane.spotifriend") {
+                    groupDefaults.set(cookie.value, forKey: "spDcCookie")
+                    groupDefaults.synchronize()
+                    print("Successfully saved cookie to group defaults")
+                } else {
+                    print("Failed to create group UserDefaults")
+                }
+                
                 self.state = .idle
                 Task {
                     await self.refreshFriends()
