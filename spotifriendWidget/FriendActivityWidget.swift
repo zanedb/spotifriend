@@ -82,6 +82,13 @@ struct WidgetActivityRow: View {
     
     var body: some View {
         HStack(alignment: .top) {
+            Link(destination: URL(string: "spotifriendWidget://play?id=\(friend.track.uri.split(separator: ":")[2])")!) {
+                Image(systemName: "play.circle.fill")
+                    .font(.system(size: 22))
+                    .foregroundColor(.green)
+            }
+                .padding(.trailing, 4)
+            
             VStack(alignment: .leading) {
                 Text(friend.user.name)
                     .font(.headline)
