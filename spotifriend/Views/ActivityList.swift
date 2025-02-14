@@ -12,9 +12,12 @@ struct ActivityList: View {
     private var timer = Timer.publish(every: 30, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        if let friendArray = viewModel.friendArray {
+        switch(viewModel.state) {
+        case .error(_):
+            ErrorView(icon: "exclamationmark.triangle.fill", title: "Uh-oh!", subtitle: viewModel.notificationState?.message ?? "An error occurred.")
+        case .loading, .loaded, .offline:
             VStack {
-                ZStack {
+                if let friendArray = viewModel.friendArray {
                     List(friendArray) { friend in
                         Menu {
                             Link(destination: friend.track.url) {
@@ -47,15 +50,8 @@ struct ActivityList: View {
                     if (friendArray.count == 0) {
                         ErrorView(icon: "moon.zzz", title: "No Friends", subtitle: "Go forth and make some.")
                     }
-                    
-                    switch(viewModel.state) {
-                    case .offline:
-                        ErrorView(icon: "wifi.slash", title: "Network Unavailable", subtitle: "This sucks for both of us.")
-                    case .error(_):
-                        ErrorView(icon: "exclamationmark.triangle.fill", title: "Uh-oh!", subtitle: viewModel.notificationState?.message ?? "An error occurred.")
-                    default:
-                        EmptyView()
-                    }
+                } else if (viewModel.state == .offline) {
+                    ErrorView(icon: "wifi.slash", title: "Network Unavailable", subtitle: "This sucks for both of us.")
                 }
             }
                 .onReceive(timer) { _ in
@@ -65,8 +61,8 @@ struct ActivityList: View {
                         await viewModel.refreshFriends()
                     }
                 }
-        } else {
-            ProgressView()
+        default:
+            EmptyView()
         }
     }
 }
