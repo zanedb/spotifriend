@@ -55,8 +55,10 @@ struct FriendActivityWidgetEntryView : View {
                 ForEach(0..<displayFriends.count, id: \.self) { index in
                     let friend = displayFriends[index]
                     
+                    Spacer()
+                    
                     WidgetActivityRow(friend: friend)
-                        .padding(.vertical, 8)
+                        .padding(.vertical, family == .systemLarge ? 8 : 4)
                         .overlay(
                             // Create List-esque trailing border on all but last child
                             Group {
@@ -64,7 +66,7 @@ struct FriendActivityWidgetEntryView : View {
                                     Rectangle()
                                         .frame(height: 0.5)
                                         .foregroundColor(Color(.systemGray4))
-                                        .offset(y: family == .systemLarge ? 8 : 6)
+                                        .offset(y: family == .systemLarge ? 10 : 6)
                                 }
                             },
                             alignment: .bottom
@@ -84,7 +86,7 @@ struct WidgetActivityRow: View {
         HStack(alignment: .top) {
             Link(destination: URL(string: "spotifriendWidget://play?id=\(friend.track.uri.split(separator: ":")[2])")!) {
                 Image(systemName: "play.circle.fill")
-                    .font(.system(size: 22))
+                    .font(.system(size: 28))
                     .foregroundColor(.green)
             }
                 .padding(.trailing, 4)
