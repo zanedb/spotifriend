@@ -32,14 +32,12 @@ struct ActivityRow: View {
                     .padding(.bottom, 5)
                     .lineLimit(1)
                     .monospaced(monospaced)
-                
-                HStack(spacing: 0) {
-                    Text("\(friend.track.name) • \(friend.track.artist.name)")
-                        .font(.subheadline)
-                        .font(.system(size: 16))
-                        .lineLimit(1)
-                        .monospaced(monospaced)
-                }
+            
+                Text("\(friend.track.name) • \(friend.track.artist.name)")
+                    .font(.subheadline)
+                    .font(.system(size: 16))
+                    .lineLimit(1)
+                    .monospaced(monospaced)
                     .padding(.bottom, 5)
                 
                 HStack {
@@ -55,7 +53,7 @@ struct ActivityRow: View {
                         .lineLimit(1)
                         .monospaced(monospaced)
                 }
-                    .foregroundColor(.gray)
+                    .foregroundColor(.secondary)
             }
             
             Spacer()
@@ -68,7 +66,7 @@ struct ActivityRow: View {
                     Text(friend.formattedTimestamp.display)
                         .font(.caption)
                         .padding(.top, 2)
-                        .foregroundColor(.gray)
+                        .foregroundColor(.secondary)
                 }
             }
         }

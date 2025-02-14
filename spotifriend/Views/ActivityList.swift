@@ -35,9 +35,7 @@ struct ActivityList: View {
                                 }
                             }
                         } label: {
-                            ActivityRow(
-                                imageURL: friend.user.imageURL!, friend: friend.user.name, track: friend.track.name, artist: friend.track.artist.name, context: friend.track.context.name, isAlbum: friend.track.context.uri == friend.track.album.uri, isListeningNow: friend.formattedTimestamp.isNow, timestamp: friend.formattedTimestamp.display
-                            )
+                            ActivityRow(friend: friend)
                         }
                         .buttonStyle(.plain)
                     }
@@ -46,15 +44,15 @@ struct ActivityList: View {
                         await viewModel.refreshFriends()
                     }
                     
+                    if (friendArray.count == 0) {
+                        ErrorView(icon: "moon.zzz", title: "No Friends", subtitle: "Go forth and make some.")
+                    }
+                    
                     switch(viewModel.state) {
-                    case .loaded:
-                        if (friendArray.count == 0) {
-                            ErrorView(icon: "moon.zzz", title: "No Friends", subtitle: "Go forth and make some.")
-                        }
                     case .offline:
                         ErrorView(icon: "wifi.slash", title: "Network Unavailable", subtitle: "This sucks for both of us.")
                     case .error(_):
-                        ErrorView(icon: "exclamationmark.circle.fill", title: "Uh-oh!", subtitle: viewModel.notificationState?.message ?? "An error occurred.")
+                        ErrorView(icon: "exclamationmark.triangle.fill", title: "Uh-oh!", subtitle: viewModel.notificationState?.message ?? "An error occurred.")
                     default:
                         EmptyView()
                     }
