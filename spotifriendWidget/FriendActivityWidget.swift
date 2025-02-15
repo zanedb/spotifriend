@@ -76,7 +76,7 @@ struct FriendActivityWidgetEntryView : View {
                 }
             }
         }
-        .containerBackground(.black, for: .widget)
+        .containerBackground(.background, for: .widget)
     }
 }
 
@@ -85,7 +85,9 @@ struct WidgetActivityRow: View {
     
     var body: some View {
         HStack(alignment: .top) {
-            Link(destination: URL(string: "spotifriendWidget://play?id=\(friend.track.uri.split(separator: ":")[2])")!) {
+            Link(destination:
+                    URL(string: "spotifriendWidget://play?id=\(friend.track.uri.split(separator: ":")[2])") ?? URL(string: "spotifriendWidget://cantUnwrap")!
+            ) {
                 Image(systemName: "play.circle.fill")
                     .font(.system(size: 28))
                     .foregroundColor(.green)

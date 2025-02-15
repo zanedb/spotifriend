@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: Spotify Access Token JSON
+// MARK: - Spotify Access Token JSON
 struct SpotifyAccessToken: Codable {
     let accessToken: String
     let isAnonymous: Bool
