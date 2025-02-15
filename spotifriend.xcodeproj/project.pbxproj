@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F39F27C2B86A1D0003DA4BC /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F39F27B2B86A1D0003DA4BC /* Network.swift */; };
 		2F4160552B0835B9006545B6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4160542B0835B9006545B6 /* SettingsView.swift */; };
 		2F5723CC2B8305C1003FEC0C /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5723CB2B8305C1003FEC0C /* OnboardingView.swift */; };
 		2FDFD6A82A897A2400B734A5 /* spotifriendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6A72A897A2400B734A5 /* spotifriendApp.swift */; };
@@ -17,7 +16,6 @@
 		2FDFD6C92A897A2700B734A5 /* spotifriendUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6C82A897A2700B734A5 /* spotifriendUITests.swift */; };
 		2FDFD6CB2A897A2700B734A5 /* spotifriendUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6CA2A897A2700B734A5 /* spotifriendUITestsLaunchTests.swift */; };
 		2FDFD6D82A897AEC00B734A5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6D72A897AEC00B734A5 /* ContentView.swift */; };
-		2FDFD6DC2A897D6300B734A5 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2FDFD6DB2A897D6300B734A5 /* SDWebImageSwiftUI */; };
 		2FDFD6DE2A89845500B734A5 /* ActivityRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6DD2A89845500B734A5 /* ActivityRow.swift */; };
 		2FDFD6E02A8985AC00B734A5 /* FriendActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6DF2A8985AC00B734A5 /* FriendActivity.swift */; };
 		2FDFD6E22A8985F800B734A5 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6E12A8985F800B734A5 /* Structs.swift */; };
@@ -25,7 +23,12 @@
 		2FDFD6E62A898B7F00B734A5 /* ActivityList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6E52A898B7F00B734A5 /* ActivityList.swift */; };
 		2FDFD6E92A898BFB00B734A5 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6E82A898BFB00B734A5 /* ErrorView.swift */; };
 		2FDFD6EB2A898EE500B734A5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6EA2A898EE500B734A5 /* LoginView.swift */; };
-		2FDFD6EE2A898F7500B734A5 /* SwiftUIBackports in Frameworks */ = {isa = PBXBuildFile; productRef = 2FDFD6ED2A898F7500B734A5 /* SwiftUIBackports */; };
+		2FEADDBF2D5E6FB700B7DF35 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEADDBE2D5E6FB700B7DF35 /* WidgetKit.framework */; };
+		2FEADDC12D5E6FB700B7DF35 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEADDC02D5E6FB700B7DF35 /* SwiftUI.framework */; };
+		2FEADDCE2D5E6FB800B7DF35 /* FriendActivityWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2FEADDBC2D5E6FB700B7DF35 /* FriendActivityWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2FEADDD62D5E957500B7DF35 /* FriendActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6DF2A8985AC00B734A5 /* FriendActivity.swift */; };
+		2FEADDD72D5E957500B7DF35 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6E12A8985F800B734A5 /* Structs.swift */; };
+		2FEADDDA2D5E960B00B7DF35 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFD6E32A89862B00B734A5 /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,10 +46,30 @@
 			remoteGlobalIDString = 2FDFD6A32A897A2400B734A5;
 			remoteInfo = spotifriend;
 		};
+		2FEADDCC2D5E6FB800B7DF35 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2FDFD69C2A897A2400B734A5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2FEADDBB2D5E6FB700B7DF35;
+			remoteInfo = FriendActivityWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		2FEADDD32D5E6FB800B7DF35 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2FEADDCE2D5E6FB800B7DF35 /* FriendActivityWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		2F39F27B2B86A1D0003DA4BC /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		2F4160542B0835B9006545B6 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2F5723CB2B8305C1003FEC0C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		2F5723DA2B830BC2003FEC0C /* spotifriend.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = spotifriend.entitlements; sourceTree = "<group>"; };
@@ -68,15 +91,30 @@
 		2FDFD6E52A898B7F00B734A5 /* ActivityList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityList.swift; sourceTree = "<group>"; };
 		2FDFD6E82A898BFB00B734A5 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		2FDFD6EA2A898EE500B734A5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		2FEADDBC2D5E6FB700B7DF35 /* FriendActivityWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FriendActivityWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FEADDBE2D5E6FB700B7DF35 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		2FEADDC02D5E6FB700B7DF35 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		2FEADDCF2D5E6FB800B7DF35 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 2FEADDBB2D5E6FB700B7DF35 /* FriendActivityWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		2FEADDC22D5E6FB700B7DF35 /* spotifriendWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (2FEADDCF2D5E6FB800B7DF35 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = spotifriendWidget; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2FDFD6A12A897A2400B734A5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FDFD6EE2A898F7500B734A5 /* SwiftUIBackports in Frameworks */,
-				2FDFD6DC2A897D6300B734A5 /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,15 +132,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2FEADDB92D5E6FB700B7DF35 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FEADDC12D5E6FB700B7DF35 /* SwiftUI.framework in Frameworks */,
+				2FEADDBF2D5E6FB700B7DF35 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		2FDFD69B2A897A2400B734A5 = {
 			isa = PBXGroup;
 			children = (
+				2FEADDD52D5E730500B7DF35 /* Shared */,
 				2FDFD6A62A897A2400B734A5 /* spotifriend */,
 				2FDFD6BD2A897A2700B734A5 /* spotifriendTests */,
 				2FDFD6C72A897A2700B734A5 /* spotifriendUITests */,
+				2FEADDC22D5E6FB700B7DF35 /* spotifriendWidget */,
+				2FEADDBD2D5E6FB700B7DF35 /* Frameworks */,
 				2FDFD6A52A897A2400B734A5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -113,6 +163,7 @@
 				2FDFD6A42A897A2400B734A5 /* spotifriend.app */,
 				2FDFD6BA2A897A2700B734A5 /* spotifriendTests.xctest */,
 				2FDFD6C42A897A2700B734A5 /* spotifriendUITests.xctest */,
+				2FEADDBC2D5E6FB700B7DF35 /* FriendActivityWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -124,10 +175,6 @@
 				2FDFD6D92A897B4700B734A5 /* Views */,
 				2FDFD6A72A897A2400B734A5 /* spotifriendApp.swift */,
 				2FDFD6AB2A897A2600B734A5 /* Assets.xcassets */,
-				2FDFD6DF2A8985AC00B734A5 /* FriendActivity.swift */,
-				2F39F27B2B86A1D0003DA4BC /* Network.swift */,
-				2FDFD6E12A8985F800B734A5 /* Structs.swift */,
-				2FDFD6E32A89862B00B734A5 /* Utils.swift */,
 				2FDFD6B52A897A2600B734A5 /* Info.plist */,
 				2FDFD6AD2A897A2600B734A5 /* Preview Content */,
 			);
@@ -173,6 +220,25 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		2FEADDBD2D5E6FB700B7DF35 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2FEADDBE2D5E6FB700B7DF35 /* WidgetKit.framework */,
+				2FEADDC02D5E6FB700B7DF35 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2FEADDD52D5E730500B7DF35 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				2FDFD6DF2A8985AC00B734A5 /* FriendActivity.swift */,
+				2FDFD6E12A8985F800B734A5 /* Structs.swift */,
+				2FDFD6E32A89862B00B734A5 /* Utils.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -183,15 +249,15 @@
 				2FDFD6A02A897A2400B734A5 /* Sources */,
 				2FDFD6A12A897A2400B734A5 /* Frameworks */,
 				2FDFD6A22A897A2400B734A5 /* Resources */,
+				2FEADDD32D5E6FB800B7DF35 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2FEADDCD2D5E6FB800B7DF35 /* PBXTargetDependency */,
 			);
 			name = spotifriend;
 			packageProductDependencies = (
-				2FDFD6DB2A897D6300B734A5 /* SDWebImageSwiftUI */,
-				2FDFD6ED2A898F7500B734A5 /* SwiftUIBackports */,
 			);
 			productName = spotifriend;
 			productReference = 2FDFD6A42A897A2400B734A5 /* spotifriend.app */;
@@ -233,6 +299,28 @@
 			productReference = 2FDFD6C42A897A2700B734A5 /* spotifriendUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		2FEADDBB2D5E6FB700B7DF35 /* FriendActivityWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FEADDD02D5E6FB800B7DF35 /* Build configuration list for PBXNativeTarget "FriendActivityWidgetExtension" */;
+			buildPhases = (
+				2FEADDB82D5E6FB700B7DF35 /* Sources */,
+				2FEADDB92D5E6FB700B7DF35 /* Frameworks */,
+				2FEADDBA2D5E6FB700B7DF35 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2FEADDC22D5E6FB700B7DF35 /* spotifriendWidget */,
+			);
+			name = FriendActivityWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = FriendActivityWidgetExtension;
+			productReference = 2FEADDBC2D5E6FB700B7DF35 /* FriendActivityWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -240,7 +328,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					2FDFD6A32A897A2400B734A5 = {
@@ -254,6 +342,9 @@
 						CreatedOnToolsVersion = 14.3.1;
 						TestTargetID = 2FDFD6A32A897A2400B734A5;
 					};
+					2FEADDBB2D5E6FB700B7DF35 = {
+						CreatedOnToolsVersion = 16.2;
+					};
 				};
 			};
 			buildConfigurationList = 2FDFD69F2A897A2400B734A5 /* Build configuration list for PBXProject "spotifriend" */;
@@ -266,8 +357,6 @@
 			);
 			mainGroup = 2FDFD69B2A897A2400B734A5;
 			packageReferences = (
-				2FDFD6DA2A897D6300B734A5 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
-				2FDFD6EC2A898F7500B734A5 /* XCRemoteSwiftPackageReference "SwiftUIBackports" */,
 			);
 			productRefGroup = 2FDFD6A52A897A2400B734A5 /* Products */;
 			projectDirPath = "";
@@ -276,6 +365,7 @@
 				2FDFD6A32A897A2400B734A5 /* spotifriend */,
 				2FDFD6B92A897A2700B734A5 /* spotifriendTests */,
 				2FDFD6C32A897A2700B734A5 /* spotifriendUITests */,
+				2FEADDBB2D5E6FB700B7DF35 /* FriendActivityWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -304,6 +394,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2FEADDBA2D5E6FB700B7DF35 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -314,7 +411,6 @@
 				2FDFD6E62A898B7F00B734A5 /* ActivityList.swift in Sources */,
 				2FDFD6E22A8985F800B734A5 /* Structs.swift in Sources */,
 				2FDFD6E42A89862B00B734A5 /* Utils.swift in Sources */,
-				2F39F27C2B86A1D0003DA4BC /* Network.swift in Sources */,
 				2FDFD6D82A897AEC00B734A5 /* ContentView.swift in Sources */,
 				2FDFD6E92A898BFB00B734A5 /* ErrorView.swift in Sources */,
 				2F4160552B0835B9006545B6 /* SettingsView.swift in Sources */,
@@ -343,6 +439,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2FEADDB82D5E6FB700B7DF35 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FEADDDA2D5E960B00B7DF35 /* Utils.swift in Sources */,
+				2FEADDD62D5E957500B7DF35 /* FriendActivity.swift in Sources */,
+				2FEADDD72D5E957500B7DF35 /* Structs.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -355,6 +461,11 @@
 			isa = PBXTargetDependency;
 			target = 2FDFD6A32A897A2400B734A5 /* spotifriend */;
 			targetProxy = 2FDFD6C52A897A2700B734A5 /* PBXContainerItemProxy */;
+		};
+		2FEADDCD2D5E6FB800B7DF35 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2FEADDBB2D5E6FB700B7DF35 /* FriendActivityWidgetExtension */;
+			targetProxy = 2FEADDCC2D5E6FB800B7DF35 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -497,12 +608,12 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.2;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.zane.spotifriend;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -531,12 +642,12 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.2;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.zane.spotifriend;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -553,7 +664,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 69MX9ABFW5;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.zane.spotifriendTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -572,7 +683,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 69MX9ABFW5;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.zane.spotifriendTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -590,6 +701,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 69MX9ABFW5;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.zane.spotifriendUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -607,6 +719,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 69MX9ABFW5;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.zane.spotifriendUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -614,6 +727,69 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = spotifriend;
+			};
+			name = Release;
+		};
+		2FEADDD12D5E6FB800B7DF35 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = spotifriendWidget/FriendActivityWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 69MX9ABFW5;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = spotifriendWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FriendActivityWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.5.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.zane.spotifriend.FriendActivityWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2FEADDD22D5E6FB800B7DF35 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = spotifriendWidget/FriendActivityWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 69MX9ABFW5;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = spotifriendWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FriendActivityWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.5.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.zane.spotifriend.FriendActivityWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -656,39 +832,16 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		2FEADDD02D5E6FB800B7DF35 /* Build configuration list for PBXNativeTarget "FriendActivityWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FEADDD12D5E6FB800B7DF35 /* Debug */,
+				2FEADDD22D5E6FB800B7DF35 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		2FDFD6DA2A897D6300B734A5 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
-		2FDFD6EC2A898F7500B734A5 /* XCRemoteSwiftPackageReference "SwiftUIBackports" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/shaps80/SwiftUIBackports";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		2FDFD6DB2A897D6300B734A5 /* SDWebImageSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2FDFD6DA2A897D6300B734A5 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
-			productName = SDWebImageSwiftUI;
-		};
-		2FDFD6ED2A898F7500B734A5 /* SwiftUIBackports */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2FDFD6EC2A898F7500B734A5 /* XCRemoteSwiftPackageReference "SwiftUIBackports" */;
-			productName = SwiftUIBackports;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2FDFD69C2A897A2400B734A5 /* Project object */;
 }

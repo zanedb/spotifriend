@@ -12,12 +12,13 @@ struct SettingsView: View {
     @EnvironmentObject private var viewModel: FriendActivityBackend
     @AppStorage("alwaysDark") var alwaysDark = false
     @AppStorage("monospaced") var monospaced = false
+    let pasteboard = UIPasteboard.general
     
     var body: some View {
         NavigationStack {
             Form {
                 Section {
-                    Button(action: { viewModel.logout() }) {
+                    Button(action: { viewModel.logout(); dismiss() }) {
                         HStack {
                             Text("Disconnect")
                             Spacer()
@@ -41,17 +42,22 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    HStack {
-                        Text("Version")
-                        Spacer()
-                        Text("2024.12 (\(SSApp.version))")
-                            .foregroundColor(.gray)
+                    Button(action: { pasteboard.string = SSApp.datedVersion }) {
+                        HStack {
+                            Text("Version")
+                                .foregroundColor(.primary)
+                            Spacer()
+                            Text(SSApp.datedVersion)
+                                .foregroundColor(.gray)
+                        }
                     }
                     
-                    NavigationLink {
-                        ErrorView(icon: monospaced ? "eye.fill" : "questionmark", title: "", subtitle: "")
-                    } label: {
-                        Text("Libraries")
+                    ShareLink(item: URL(string: "https://zane.link/spot")!) {
+                        HStack {
+                            Text("Share App")
+                            Spacer()
+                            Image(systemName: "square.and.arrow.up")
+                        }
                     }
                 } header: {
                     Text("About")

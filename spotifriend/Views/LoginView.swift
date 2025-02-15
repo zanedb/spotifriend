@@ -18,7 +18,7 @@ struct LoginView: View {
                     .font(.largeTitle)
                     .bold()
                 
-                NavigationLink(destination: WebviewLogin()) {
+                NavigationLink(destination: WebViewLogin()) {
                     Text("Authorize Spotify")
                         .foregroundColor(.white)
                         .font(.system(size: 17))
@@ -57,8 +57,8 @@ extension NavigationState: WKNavigationDelegate {
         self.url = webView.url
         
         Task {
-            if await FriendActivityBackend.shared.loggedOut == true {
-                await FriendActivityBackend.shared.checkIfLoggedIn()
+            if FriendActivityBackend.shared.state == .loggedOut {
+                FriendActivityBackend.shared.checkLoginStatus()
             }
         }
         
@@ -83,7 +83,7 @@ struct WebView : UIViewRepresentable {
     func updateUIView(_ uiView: WKWebView, context: Context) { }
 }
 
-struct WebviewLogin: View {
+struct WebViewLogin: View {
     @StateObject var navigationState = NavigationState()
     
     init() {
