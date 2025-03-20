@@ -51,14 +51,6 @@ struct SettingsView: View {
                                 .foregroundColor(.gray)
                         }
                     }
-                    
-                    ShareLink(item: URL(string: "https://zane.link/spot")!) {
-                        HStack {
-                            Text("Share App")
-                            Spacer()
-                            Image(systemName: "square.and.arrow.up")
-                        }
-                    }
                 } header: {
                     Text("About")
                 } footer: {

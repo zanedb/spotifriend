@@ -27,8 +27,9 @@ struct ErrorView: View {
                 .padding(.top, 10)
                 .foregroundColor(.gray)
                 .font(.system(size: 18))
+                .multilineTextAlignment(.center)
         }
-        .frame(maxHeight: .infinity)
+            .frame(maxWidth: 320, maxHeight: .infinity)
     }
 }
 

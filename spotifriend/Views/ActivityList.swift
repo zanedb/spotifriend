@@ -48,6 +48,12 @@ struct ActivityList: View {
                 }
             } else if (viewModel.state == .offline) {
                 ErrorView(icon: "wifi.slash", title: "Network Unavailable", subtitle: "This sucks for both of us.")
+            } else if case .error(let errorMessage) = viewModel.state {
+                if (errorMessage.contains("The data couldn’t be read because it is missing.")) {
+                    ErrorView(icon: "person.2.slash", title: "The Day The Music Died", subtitle: "In March 2025, Spotify removed access to the endpoint that was powering this app. Short $SPOT.")
+                } else {
+                    ErrorView(icon: "exclamationmark.triangle", title: "An Error Occurred", subtitle: "Try again later.")
+                }
             }
         }
             .onReceive(timer) { _ in
