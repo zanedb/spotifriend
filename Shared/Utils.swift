@@ -14,7 +14,7 @@ enum SSApp {
     static let idString = Bundle.main.bundleIdentifier!
     static let name = Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String
     static let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-    static let datedVersion = "2025.02 (\(version))"
+    static let datedVersion = "2025.03 (\(version))"
     static let build = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
     static let versionWithBuild = "\(version) (\(build))"
     // static let rootName = Bundle.app.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String
